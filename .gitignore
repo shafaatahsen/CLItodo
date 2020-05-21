@@ -1,0 +1,7 @@
+#Node Files
+node_modules/
+package-lock.json
+package.json
+
+#OS files
+.DS_store
