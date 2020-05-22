@@ -10,6 +10,7 @@ class todoitem{
 }
 
 export function cli(args) {
+	console.clear();
 	console.log(chalk.blueBright("Welcome to The Todo List CLI App\n"));
 	const items = require('./items.json');
 	
@@ -33,10 +34,10 @@ export function cli(args) {
 
 			for (const key of keys) {
 	  			if(items[key] == false){
-	  				console.log("[ ]" + key );
+	  				console.log("[ ] " + key );
 	  			}
 	  			else{
-	  				console.log("[X]" + key);
+	  				console.log("[X] " + key);
 	  			}
 			}
 			break;
