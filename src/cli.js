@@ -19,42 +19,35 @@ class todoitem{
 //todo complete [item]
 //todo undo [item]
 //todo delete [item]
-export function cli(args) {
+export async function cli(args) {
 	console.clear();
-	console.log(chalk.blueBright("Welcome to The Todo List CLI App\n"));
 	const items = require('./items.json');
 	
 	args.splice(0, 2); //remove the irrelevent args
+
 
 	switch(args[0]){
 		case "add":
 			try {
 				args.splice(0,1); //remove 'add' from args
-				add(args, items); //remove add
+				let printstr = await add(args, items);
+				console.log(chalk.greenBright(printstr));
+				show(items);
 			}
 			catch (error){
 				console.log(chalk.redBright("sorry couldn't add that!"));
 			}
 			break;
 		case "show":
-			console.log("To-Do List");
-			console.log("------------------------------------------");
-
-			const keys = Object.keys(items)
-
-			for (const key of keys) {
-	  			if(items[key] == false){
-	  				console.log("[ ] " + key );
-	  			}
-	  			else{
-	  				console.log("[X] " + key);
-	  			}
-			}
+			console.log(chalk.blueBright("Welcome to The Todo List CLI App\n"));
+			show(items);
 			break;
 		case "delete":
 			try {
 				args.splice(0,1); //remove 'delete' from args
-				dlt(args, items); //remove delete
+				let printstr = await dlt(args, items);
+				console.log(chalk.greenBright(printstr));
+				show(items);
 			}
 			catch (error){
 				console.log(chalk.redBright("sorry couldn't delete that"));
@@ -63,7 +56,9 @@ export function cli(args) {
 		case "complete":
 			try {
 				args.splice(0,1); //remove 'complete' from args
-				complete(args, items); //remove delete
+				let printstr = await complete(args, items);
+				console.log(chalk.greenBright(printstr));
+				show(items);
 			}
 			catch (error){
 				console.log(chalk.redBright("sorry couldn't delete that"));
@@ -73,7 +68,9 @@ export function cli(args) {
 		case "undo":
 			try {
 				args.splice(0,1); //remove 'complete' from args
-				undo(args, items); //remove delete
+				let printstr = await undo(args, items);
+				console.log(chalk.greenBright(printstr));
+				show(items);
 			}
 			catch (error){
 				console.log(chalk.redBright("sorry couldn't undo that"));
@@ -90,7 +87,23 @@ export function cli(args) {
 			console.log(chalk.redBright("sorry that's not a real command"));
 	}
 
-	console.log("\ntype 'todo help' to show all options");
+	//console.log("\ntype 'todo help' to show all options");
+}
+
+function show(items){
+	console.log("To-Do List");
+	console.log("------------------------------------------");
+
+	const keys = Object.keys(items)
+
+	for (const key of keys) {
+			if(items[key] == false){
+				console.log("[ ] " + key );
+			}
+			else{
+				console.log("[X] " + key);
+			}
+	}
 }
 
 //Func to add element from todolist
@@ -108,8 +121,10 @@ function add(args, items){
 	if (err) {
 	  throw new Error(err.message);
 	}
-		console.log(chalk.greenBright("successfully added '"+item + "'' to list."));	
-	})
+	});
+	return new Promise((resolve, reject)=>{
+			resolve("successfully added '"+item + "' to list.");	
+		}); 
 }
 
 //Func to add element from todolist
@@ -133,9 +148,11 @@ function dlt(args, items){
 	fs.writeFile(`${__dirname}/items.json`, JSON.stringify(items), function(err) {
 	if (err) {
 	  throw new Error(err.message);
-	}
-		console.log(chalk.greenBright("successfully deleted '"+item + "' from todo list."));	
+	}	
 	})
+	return new Promise((resolve, reject)=>{
+			resolve("successfully deleted '"+item + "' from todo list.");	
+		}); 
 }
 
 //Func to complete element from todolist
@@ -158,8 +175,11 @@ function complete(args, items){
 	if (err) {
 	  throw new Error(err.message);
 	}
-		console.log(chalk.greenBright("Completed "+item));	
 	})
+
+	return new Promise((resolve, reject)=>{
+			resolve("Completed "+item);	
+		}); 
 
 }
 
@@ -183,8 +203,11 @@ function undo(args, items){
 	if (err) {
 	  throw new Error(err.message);
 	}
-		console.log("Undid "+item);	
 	})
+
+	return new Promise((resolve, reject)=>{
+			resolve("Undid "+item);	
+		}); 
 
 }
 
