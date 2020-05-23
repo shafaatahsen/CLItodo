@@ -4,6 +4,7 @@ Command-line todo list app built with NodeJS
 ## Pre-requisites
 - NodeJS installed
 - npm installed
+
 Go to https://eloquentjavascript.net/20_node.html for an easy,quick guide on how to get started with Node.
 
 ## Getting Started
