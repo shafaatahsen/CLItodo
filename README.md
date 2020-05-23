@@ -26,11 +26,9 @@ At this point, should see `package.json` and `packagelock.json` in your director
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-**
  "bin": {
     "biller": "./index.js"
   },
-**
   "keywords": [],
   ...
 }
