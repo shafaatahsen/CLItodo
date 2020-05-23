@@ -1,7 +1,7 @@
 # CLItodo
 Command-line todo list app built with NodeJS
 
-##Pre-requisites
+## Pre-requisites
 - NodeJS installed
 - npm installed
 Go to https://eloquentjavascript.net/20_node.html for an easy,quick guide on how to get started with Node.
@@ -58,7 +58,7 @@ todo show                //Show current todo list
 ## Authors
 Shafaat Ahsen - UT Austin
 
-##Acknowledgements
+## Acknowledgements
 * Thank you to Bilal Quadri for awesome project idea and help.
 * Thank you to Marijn Haverbeke who wrote https://eloquentjavascript.net/
 
