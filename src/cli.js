@@ -87,7 +87,7 @@ export async function cli(args) {
 			console.log(chalk.redBright("sorry that's not a real command"));
 	}
 
-	//console.log("\ntype 'todo help' to show all options");
+	console.log("\ntype 'todo help' to show all options");
 }
 
 function show(items){
