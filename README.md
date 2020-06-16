@@ -14,6 +14,7 @@ Go to https://eloquentjavascript.net/20_node.html for an easy, quick guide on ho
 4. We use modules `chalk` and JS ES6 modules `esm` . So in same directory run
 	1. `npm install chalk`
 	2. `npm install esm`
+
 At this point, should see `package.json` and `packagelock.json` in your directory now, along with a new subdirectory `node_modules`
 
 `index.js` already has **shebang** to link to your file path. 
